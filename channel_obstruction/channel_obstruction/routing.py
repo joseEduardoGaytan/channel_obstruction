@@ -1,0 +1,11 @@
+from channels.routing import route, route_class
+from channels.staticfiles import StaticFilesConsumer
+from game import consumers
+
+
+# routes defined for channel calls
+# this is similar to the Django urls, but specifically for channels
+channel_routing = [
+    route_class(consumers.LobbyConsumer, path=r"^/lobby/"),
+    route("websocket.receive", consumers.LobbyConsumer.receive)
+]
